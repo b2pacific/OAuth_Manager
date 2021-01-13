@@ -70,8 +70,8 @@ router.post("/", async (req, res, next) => {
             client.callback_url +
             "?authorization_grant=" +
             user_client.authorization_grant;
-          // return res.redirect(200, redirect_url);
-          return res.status(200).json({ url: redirect_url });
+          return res.redirect(200, redirect_url);
+          // return res.status(200).json({ url: redirect_url });
         } else {
           return res.redirect(403, client.callback_url);
         }
