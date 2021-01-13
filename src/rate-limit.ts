@@ -4,9 +4,8 @@ import {
   IRateLimiterStoreOptions,
   RateLimiterRedis,
 } from "rate-limiter-flexible";
+import client from "./redis_client";
 
-import redis from "redis";
-const client = redis.createClient(process.env.REDIS_PORT as any || 6379);
 
 const opts: IRateLimiterStoreOptions = {
   storeClient: client,

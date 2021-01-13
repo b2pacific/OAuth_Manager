@@ -4,7 +4,7 @@ import bcrytp from "bcrypt";
 
 import { User } from "../../entity/user";
 
-const saltRound = 10;
+const saltRound = process.env.SALT_ROUNDS as any || 10;
 const router = express.Router();
 
 router.post("/", async (req, res, next) => {
