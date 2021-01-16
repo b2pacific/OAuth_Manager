@@ -41,11 +41,13 @@ This project makes it very easy to integrate OAuth service in their system. With
 
 * If you have redisDB running on your Local Machine or on a docker then note down it's Port Number else get the config file for the redisDB if it's hosted on the cloud.
 
-JWT_SECRET = This will contain the secret used for encrypting the JWT token
-SERVER_AUTH = Token with which the Company's API Server will authenticate that this is the OAuth server making the request for the resources. You will have to add this to the API Server
-DB_URI = This will contain the PostgreSQL database URL
-PORT = The Port on which this service will run
-BASE_URL = The Base URL for the API Server
-REDIS_PORT = The Port on which Redis is running
-UNREGISTERED_CLIENTS_REQUEST_LIMIT = 
-REGISTERED_CLIENTS_REQUEST_LIMIT = 
+* Filling up the .env file
+
+    * JWT_SECRET = This will contain the secret used for encrypting the JWT token
+    * SERVER_AUTH = Token with which the Company's API Server will authenticate that this is the OAuth server making the request for the resources. You will have to add this to the API Server
+    * DB_URI = This will contain the PostgreSQL database URL
+    * PORT = The Port on which this service will run
+    * BASE_URL = The Base URL for the API Server
+    * REDIS_PORT = The Port on which Redis is running
+    * UNREGISTERED_CLIENTS_REQUEST_LIMIT = 
+    * REGISTERED_CLIENTS_REQUEST_LIMIT = 
