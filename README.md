@@ -1,7 +1,7 @@
 # OAuth_Manager
 
 ## Overview
-S
+
 This project is a OAuth Manager. This Manager will manage and provide permissions to external clients to access APIs offered by a company’s services. It will help to speed up their integration with Clients and provide them with access to specific APIs.
 Companies can host this project as a microservice and provide it the access to their database of users and clients and then the clients can access user info according to the scope which a user grants to them. I have implemented the whole architecture of the service similar to Github's OAuth.
 Features like limiting the number of request of clients who are not registered with the company are also taken care of.
@@ -49,5 +49,5 @@ This project makes it very easy to integrate OAuth service in their system. With
     * PORT = The Port on which this service will run
     * BASE_URL = The Base URL for the API Server
     * REDIS_PORT = The Port on which Redis is running
-    * UNREGISTERED_CLIENTS_REQUEST_LIMIT = 
-    * REGISTERED_CLIENTS_REQUEST_LIMIT = 
+    * UNREGISTERED_CLIENTS_REQUEST_LIMIT = The number of requests a non-registered is allowed
+    * REGISTERED_CLIENTS_REQUEST_LIMIT = The number of requests a reqgistered is allowed
