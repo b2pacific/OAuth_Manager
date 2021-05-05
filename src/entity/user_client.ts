@@ -5,13 +5,9 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import Scope from "../enums/scope";
 import { Client } from "./client";
 import { User } from "./user";
-
-enum Scope {
-  BASIC = "basic",
-  ADVANCE = "advance",
-}
 
 @Entity()
 export class User_Client {

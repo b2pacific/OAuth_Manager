@@ -1,12 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import Scope from "../enums/scope";
 import { User } from "./user";
-
-enum Scope {
-  BASIC = "basic",
-  READ = "read",
-  WRITE = "write",
-  HYBD = "hybrid",
-}
 
 @Entity()
 export class Personal {
@@ -31,5 +25,5 @@ export class Personal {
 
   @Column({ type: "simple-array", nullable: true })
   allowed_url: string[];
-  
+
 }
