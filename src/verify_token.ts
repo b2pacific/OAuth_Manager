@@ -2,13 +2,14 @@ import { NextFunction, Request, Response } from "express";
 import { getConnection, getRepository } from "typeorm";
 import jwt from "jsonwebtoken";
 import { User_Client } from "./entity/user_client";
+import { Personal } from "./entity/personal_AT";
 
 const verify_token = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  try {    
+  try {
     const token = req.headers.authorization!.split("Bearer ")[1];
     if (token) {
       const decoded: any = jwt.verify(
@@ -25,17 +26,31 @@ const verify_token = async (
         .leftJoinAndSelect("user_client.client", "client")
         .where("user_client.id = :id", {
           id: decoded.token,
-        }).getOne();
+        })
+        .getOne();
       if (user_client) {
         req.id = user_client.id;
         next();
       } else {
-        console.log("Hello");
-        
         return res.status(404).end();
       }
     } else {
-      next();
+      if (req.query.access_token) {
+        const personalApp = await getRepository(Personal)
+          .createQueryBuilder("personal_AT")
+          .where("personal_AT.access_token = :accesstoken", {
+            access_token: req.query.access_token,
+          })
+          .getOne();
+
+        if (personalApp) {
+          req.id = personalApp.id;
+          next();
+        }
+        return res.status(404).end();
+      } else {
+        next();
+      }
     }
   } catch (err) {
     if (err.name === "TokenExpiredError") return res.status(401).end();
