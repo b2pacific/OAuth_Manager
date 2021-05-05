@@ -6,6 +6,7 @@ import { Api } from "../../entity/api";
 import { User_Client } from "../../entity/user_client";
 import Request_Type from "../../enums/request_type";
 import Scope from "../../enums/scope";
+import { Personal } from "../../entity/personal_AT";
 
 const router = express.Router();
 
@@ -31,6 +32,14 @@ router.post("/*", async (req, res, next) => {
         if (user_client && user_client.allowed_url.includes(api.tag)) {
           const response = await axios.post(url, req.body);
           return res.status(200).json(response);
+        }
+        const personalApp = await getConnection()
+          .getRepository(Personal)
+          .findOne({ where: { id: req.id } });
+
+        if (personalApp && personalApp.allowed_url.includes(api.tag)) {
+          const response = await axios.get(url);
+          return res.status(200).json(response.data);
         }
         return res.status(403).end();
       }
